@@ -439,7 +439,153 @@ section.test-section form input[type="reset"] {
     transition: background 0.3s ease;
 }
 
-section.test-section form input[type="button"]:hover,
-section.test-section form input[type="reset"]:hover {
-    background: #9bcaec;                                       /*тест...*/
+
+
+
+
+
+
+
+
+
+
+section.test-section form[name="poll"] {
+    margin-bottom: 20px;
+}
+
+section.test-section form[name="poll"] p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #ffffff !important;
+}
+
+section.test-section form[name="poll"] input[type="text"] {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff !important;
+    border: 1px solid #b8d9f0;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    padding: 5px;
+    display: block;
+}
+
+section.test-section form[name="poll"] input[type="radio"] {
+    margin-right: 10px;
+}
+
+section.test-section form[name="poll"] div {
+    text-align: left; /* Вирівнювання по лівому краю для блоку з радіокнопками */
+}
+
+section.test-section form[name="poll"] input[type="button"],
+section.test-section form[name="poll"] input[type="reset"] {
+    background: #b8d9f0;
+    color: #27323a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-right: 10px;
+}
+
+section.test-section form[name="poll"] input[type="button"]:hover,
+section.test-section form[name="poll"] input[type="reset"]:hover {
+    background: #9bcaec;
+}
+
+section.test-section #pollResult {
+    color: #b8d9f0 !important;
+    font-size: 16px;
+    text-align: center;
+    min-height: 20px; /* Забезпечуємо місце для тексту */
+}
+
+
+/* Секція калькулятора */
+section.ticket-calculator {
+    background-image: url('media/фон_4.jpg'); /* Використовуємо той самий фон, що й у deep-sea */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+section.ticket-calculator .section-title {
+    text-align: right;
+    margin-right: 40px; /* Відступ справа, як у інших секціях */
+    width: 100%;
+}
+
+section.ticket-calculator .card {
+    background: rgba(0, 0, 0, 0.5); /* Напівпрозорий фон, як у інших секціях */
+    padding: 30px;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+    width: 80%;
+    max-width: 900px; /* Обмежуємо ширину для зручності */
+    transition: transform 0.8s ease; /* Анімація при наведенні */
+}
+
+section.ticket-calculator form {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    text-align: left; /* текст по лівому краю */
+}
+
+section.ticket-calculator form p {         /*кількість охочих в вал*/
+    font-size: 20px;
+    color: #b8d9f0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+section.ticket-calculator form label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+section.ticket-calculator form input[type="number"] {
+    background: rgba(255, 255, 255, 0.1); /* Напівпрозоре поле введення */
+    color: #ffffff;
+    border: 1px solid #b8d9f0;
+    border-radius: 5px;
+    padding: 5px;
+    width: 60px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    transition: border-color 0.3s ease;
+}
+
+section.ticket-calculator form input[type="button"]:hover,
+section.ticket-calculator form input[type="reset"]:hover {
+    background: #9bcaec; /* Зміна кольору при наведенні */
+    transform: scale(1.05); /* Легке збільшення при наведенні */
+}
+
+section.ticket-calculator form input[type="button"]:active,
+section.ticket-calculator form input[type="reset"]:active {
+    transform: scale(0.95); /* Ефект натискання */
+}
+
+section.ticket-calculator #ticketResult {
+    color: #b8d9f0;
+    font-size: 16px;
+    text-align: left; /* Вирівнювання результату по лівому краю */
+    min-height: 100px; /* Забезпечуємо місце для тексту */
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05); /* Легкий фон для результату */
+    border-radius: 5px;
 }

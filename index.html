@@ -134,12 +134,34 @@
             </div>
         </section>
 
-
         <section class="test-section">
             <div class="section-title">
                 <h2>тестування рибних знань</h2>
             </div>
             <div class="card">
+                <!-- Інтерактивне опитування -->
+                <h3 style="color: #b8d9f0;">Познайомимося перед тестом!</h3>
+                <form name="poll">
+                    <p style="color: #ffffff;">Як можна до вас звернутися?</p>
+                    <input type="text" name="userName" placeholder="Ваше ім'я" maxlength="20" style="width: 200px; padding: 5px; margin-bottom: 10px;">
+                    <p style="color: #ffffff;">Який морський житель вам сподобалася найбільше?</p>
+                    <div style="color: #ffffff; text-align: left;">
+                        <input type="radio" name="favoriteFish" value="Летюча риба"> Летюча риба<br>
+                        <input type="radio" name="favoriteFish" value="Риба-Місяць"> Риба-місяць<br>
+                        <input type="radio" name="favoriteFish" value="Риба-клоун"> Риба-клоун<br>
+                        <input type="radio" name="favoriteFish" value="Синій лобстер"> Синій лобстер<br>
+                        <input type="radio" name="favoriteFish" value="Риба-топор"> Риба-топор<br>
+                        <input type="radio" name="favoriteFish" value="Риба-вудильник"> Риба-вудильник<br>
+                        <input type="radio" name="favoriteFish" value="Риба-ліхтарик"> Риба-ліхтарик<br>
+                        <input type="radio" name="favoriteFish" value="Іскристий кальмар"> Іскристий кальмар<br>
+                    </div>
+                    <br>
+                    <input type="button" value="OK" onclick="checkPoll()">
+                    <input type="reset" value="Скасувати" onclick="cancelPoll()">
+                </form>
+                <p id="pollResult" style="margin-top: 10px; color: #b8d9f0;"></p>
+                <hr style="border: 1px solid #b8d9f0; margin: 20px 0;">
+                
                 <span style="color:#b8d9f0; text-decoration:underline; cursor:pointer;" onclick="document.getElementById('instruction').style.display = showhide(document.getElementById('instruction').style.display)">
                     ІНСТРУКЦІЯ
                 </span>
@@ -153,7 +175,6 @@
                         <li>за кожну правильну відповідь нараховується 1 бал;</li>
                         <li>оцінки: менше 2,5 бала — незадовільно, від 2,5 до 3,74 — задовільно, від 3,75 до 4,99 — добре!, 5 — все чудово!;</li>
                         <li>щоб скинути відповіді, натисніть кнопку "скинути відповіді";</li>
-
                     </ul>
                 </div>
                 <form name="test">
@@ -191,12 +212,35 @@
                     </ol>
                     <center>
                         <p><textarea name="s1" rows="4" cols="70" readonly></textarea></p>
-                        <input onclick="check_me()" type="button" value="показати результат"/>    
+                        <input onclick="check_me()" type="button" value="показати результат"/>     
                         <input type="reset" value="скинути відповіді"/>
                     </center>
                 </form>
             </div>
         </section>
+
+        <!-- Нова секція для калькулятора квитків -->
+        <section class="ticket-calculator">
+            <div class="section-title">
+                <h2>калькулятор вартості квитків</h2>
+            </div>
+            <div class="card">
+                <form name="ticketForm">
+                    <p style="color: #ffffff;">Кількість охочих в Океанографічний парк Валенсії:</p>
+                    <div style="color: #ffffff; text-align: left;">
+                        <label>Дорослі (13–64 роки): <input type="number" name="adults13to64" min="0" value="0" style="width: 50px; padding: 5px; margin-right: 10px;"></label><br>
+                        <label>Дорослі (65–99 років): <input type="number" name="adults65to99" min="0" value="0" style="width: 50px; padding: 5px; margin-right: 10px;"></label><br>
+                        <label>Діти (4–12 років): <input type="number" name="children4to12" min="0" value="0" style="width: 50px; padding: 5px; margin-right: 10px;"></label><br>
+                        <label>Діти (до 4 років): <input type="number" name="childrenUnder4" min="0" value="0" style="width: 50px; padding: 5px; margin-right: 10px;"></label><br>
+                    </div>
+                    <br>
+                    <input type="button" value="Розрахувати" onclick="calculateAndDisplay()" style="background: #b8d9f0; color: #27323a; border: none; padding: 10px 20px; border-radius: 5px; font-family: 'Montserrat', sans-serif; font-weight: 400; cursor: pointer; transition: background 0.3s ease; margin-right: 10px;">
+                    <input type="reset" value="Скинути" style="background: #b8d9f0; color: #27323a; border: none; padding: 10px 20px; border-radius: 5px; font-family: 'Montserrat', sans-serif; font-weight: 400; cursor: pointer; transition: background 0.3s ease;">
+                </form>
+                <p id="ticketResult" style="margin-top: 10px; color: #b8d9f0;"></p>
+            </div>
+        </section>
+
     </main>
 
     <nav class="bottom-nav">
@@ -219,8 +263,54 @@
         <p>Дизайн та розробка: М. Маценко.</p>
     </footer>
 
+    <script type="text/javascript" src="розрахунок.js"></script>
     <script type="text/javascript">
         var res = "13223";
+
+        //  для опитування
+        function checkPoll() {
+            console.log("checkPoll invoked");
+            var userName = document.forms["poll"]["userName"].value;
+            var favoriteFish = document.forms["poll"]["favoriteFish"];
+            var fishSelected = false;
+
+            //чи обрана якась риба
+            for (var i = 0; i < favoriteFish.length; i++) {
+                if (favoriteFish[i].checked) {
+                    fishSelected = true;
+                    break;
+                }
+            }
+
+            console.log("User Name:", userName, "Fish Selected:", fishSelected);
+
+            //чи заповнені обидва поля
+            if (userName.trim() === "" || !fishSelected) {
+                document.getElementById("pollResult").innerText = "Дія була відмінена";
+                console.log("Poll cancelled"); 
+            } else {
+                document.getElementById("pollResult").innerText = `Привіт, ${userName}! Ваш улюблений морський житель — ${favoriteFish.value}. Чудовий вибір! Будемо знати. Тепер переходьте до тесту!`;
+                console.log("Poll successful");
+            }
+        }
+
+        //скусвування
+        function cancelPoll() {
+            document.getElementById("pollResult").innerText = "Дія була відмінена. Будь ласка, введіть ім'я та зробіть вибір ще раз.";
+            console.log("Poll cancelled via reset button");
+        }
+
+        //виклик кальк та відобр резулттаут
+        function calculateAndDisplay() {
+            var adults13to64 = parseInt(document.forms["ticketForm"]["adults13to64"].value) || 0;
+            var adults65to99 = parseInt(document.forms["ticketForm"]["adults65to99"].value) || 0;
+            var children4to12 = parseInt(document.forms["ticketForm"]["children4to12"].value) || 0;
+            var childrenUnder4 = parseInt(document.forms["ticketForm"]["childrenUnder4"].value) || 0;
+
+            var result = calculateTicketCost(adults13to64, adults65to99, children4to12, childrenUnder4);
+            document.getElementById("ticketResult").innerText = result;
+        }
+
         function check_me() {
             var count = 0;
             with (document.test) {
@@ -264,7 +354,7 @@
             else if (nok >= 2.5) s = "задовільно";
             else s = "незадовільно";
             document.test.s1.value = "кількість правильних відповідей " + nok + ". ваша оцінка " + s + ". подивіться на віконце біля номера питання: якщо відповідь правильна — з’явиться (+), якщо ні — буде (-)";
-
+    
             with (document.test) {
                 T1.value = answ.charAt(0) == "1" ? " + " : " - ";
                 T2.value = answ.charAt(1) == "1" ? " + " : " - ";
